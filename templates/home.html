@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frequency response indicator App</title>
+
+    <link href="../static/css/main.css" rel="stylesheet">
+
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/bokeh/2.4.0/bokeh.min.css"
+            rel="stylesheet" type="text/css">
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/bokeh/2.4.0/bokeh-widgets.css"
+            rel="stylesheet" type="text/css">
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/bokeh/2.4.0/bokeh-tables.css"
+            rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container" style="overflow:scroll">
+    <h1>Frequency Response Indicator Website</h1>
+    <h2>Designed by Opemipo Okunoren</h2>
+    <h3>The app of this website is to enter 4 Debye parameters to display a graph of conductivity and permittivity for
+        different tissues</h3>
+    <div class="graph" style="width: 800px; height:400px">
+        {{ div|safe }}
+        {{ script|safe }}
+    </div>
+    <form method="post" >
+        <div class='tissue'>
+            <label for="Tissue">Select tissue type</label><br>
+            <select id="Tissue" name="Tissue">
+                <option value="1000">None</option>
+                <option value="1">Adrenal Gland</option>
+                <option value="2">Air</option>
+                <option value="3">Bile</option>
+                <option value="4">Blood</option>
+                <option value="5">Blood Plasma</option>
+                <option value="6">Blood Serum</option>
+                <option value="7">Blood Vessel Wall</option>
+                <option value="8">Bone (Cancellous)</option>
+                <option value="9">Bone (Cortical)</option>
+                <option value="10">Bone Marrow (Red)</option>
+                <option value="11">Bone Marrow (Yellow)</option>
+                <option value="12">Brain</option>
+                <option value="13">Brain (Grey Matter)</option>
+                <option value="14">Brain (White Matter)</option>
+                <option value="15">Breast Fat</option>
+                <option value="16">Breast Gland</option>
+                <option value="17">Bronchi</option>
+                <option value="18">Bronchi lumen</option>
+                <option value="19">Cartilage</option>
+                <option value="20">Cerebellum</option>
+                <option value="21">Cerebrospinal Fluid</option>
+                <option value="22">Cervix</option>
+                <option value="23">Commissura Anterior</option>
+                <option value="24">Commissura Posterior</option>
+                <option value="25">Connective Tissue</option>
+                <option value="26">Diaphragm</option>
+                <option value="27">Ductus Deferens</option>
+                <option value="28">Dura</option>
+                <option value="29">Epididymis</option>
+                <option value="30">Esophagus</option>
+                <option value="31">Esophagus Lumen</option>
+                <option value="32">Eye (Aqueous Humor)</option>
+                <option value="33">Eye (Choroid)</option>
+                <option value="34">Eye (Ciliary Body)</option>
+                <option value="35">Eye (Cornea)</option>
+                <option value="36">Eye (Iris)</option>
+                <option value="37">Eye (Lens)</option>
+                <option value="38">Eye (Retina)</option>
+                <option value="39">Eye (Sclera)</option>
+                <option value="40">Eye (Vitreous Humor)</option>
+                <option value="41">Eye Lens (Cortex)</option>
+                <option value="42">Eye Lens (Nucleus)</option>
+                <option value="43">Fat</option>
+                <option value="44">Fat (Average Infiltrated)</option>
+                <option value="45">Fat (Not Infiltrated)</option>
+                <option value="46">Gallbladder</option>
+                <option value="47">Heart Lumen</option>
+                <option value="48">Heart Muscle</option>
+                <option value="49">Hippocampus</option>
+                <option value="50">Hypophysis</option>
+                <option value="51">Hypothalamus</option>
+                <option value="52">Intervertebral Disc</option>
+                <option value="53">Kidney</option>
+                <option value="54">Kidney (Cortex)</option>
+                <option value="55">Kidney (Medulla)</option>
+                <option value="56">Large Intestine</option>
+                <option value="57">Large Intestine Lumen</option>
+                <option value="58">Larynx</option>
+                <option value="59">Liver</option>
+                <option value="60">Lung</option>
+                <option value="61">Lung (Deflated)</option>
+                <option value="62">Lung (Inflated)</option>
+                <option value="63">Lymph</option>
+                <option value="64">Lymphnode</option>
+                <option value="65">Mandible</option>
+                <option value="66">Medulla Oblongata</option>
+                <option value="67">Meniscus</option>
+                <option value="68">Midbrain</option>
+                <option value="69">Mucous Membrane</option>
+                <option value="70">Muscle</option>
+                <option value="71">Nerve</option>
+                <option value="72">Ovary</option>
+                <option value="73">Pancreas</option>
+                <option value="74">Penis</option>
+                <option value="75">Pharynx</option>
+                <option value="76">Pineal Body</option>
+                <option value="77">Placenta</option>
+                <option value="78">Pons</option>
+                <option value="79">Prostate</option>
+                <option value="80">Salivary Gland</option>
+                <option value="81">SAT (Subcutaneous Fat)</option>
+                <option value="82">Seminal vesicle</option>
+                <option value="83">Skin</option>
+                <option value="84">Skull Cancellous</option>
+                <option value="85">Skull Cortical</option>
+                <option value="86">Small Intestine</option>
+                <option value="87">Small Intestine Lumen</option>
+                <option value="88">Spinal Cord</option>
+                <option value="89">Spleen</option>
+                <option value="90">Stomach</option>
+                <option value="91">Stomach Lumen</option>
+                <option value="92">Tendon\Ligament</option>
+                <option value="93">Testis</option>
+                <option value="94">Thalamus</option>
+                <option value="95">Thymus</option>
+                <option value="96">Thyroid Gland</option>
+                <option value="97">Tongue</option>
+                <option value="98">Tooth</option>
+                <option value="99">Tooth (Dentine)</option>
+                <option value="100">Tooth (Enamel)</option>
+                <option value="101">Trachea</option>
+                <option value="102">Trachea Lumen</option>
+                <option value="103">Ureter\Urethra</option>
+                <option value="104">Urinary Bladder Wall</option>
+                <option value="105">Urine</option>
+                <option value="106">Uterus</option>
+                <option value="107">Vagina</option>
+                <option value="108">Vertebrae</option>
+                <option value="109">Water</option>
+            </select>
+        </div>
+        <br>
+        <div class='insameline'>
+            <label for="debye1">conductivity:</label><br>
+            <input type="number" id="debye1" name="debye1" step="any" value="{{tissue_conductivity}}"><br>
+        </div>
+        <div class='insameline'>
+            <label for="debye2">e-static:</label><br>
+            <input type="number" id="debye2" name="debye2" step="any" value="{{tissue_e_static}}"><br>
+        </div>
+        <div class='insameline'>
+            <label for="debye3">e-infinity:</label><br>
+            <input type="number" id="debye3" name="debye3" step="any" value="{{tissue_e_infinity}}"><br>
+        </div>
+        <div class='insameline'>
+            <label for="debye4">tau:</label><br>
+            <input type="number" id="debye4" name="debye4" step="any" value="{{tissue_tau}}"><br>
+        </div>
+        <br>
+            <div class='button'>
+            <input type="submit" value="SUBMIT" name="action"/>
+            </div>
+    </form>
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/2.4.0/bokeh.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/2.4.0/bokeh-widgets.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bokeh/2.4.0/bokeh-tables.js"></script>
+</html>
